@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'blinkit-clone';
+
+  displayData: any;
+
+  constructor() {
+    console.log('AppComponent initialized');
+  }
 }

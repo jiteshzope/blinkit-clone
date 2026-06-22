@@ -1,0 +1,9 @@
+ng build --configuration production 
+This command create a production build, means it creates bundles in dist/project-name which are optimised/minified and ready to be deployed to a production server. This production server is used by the actual customer website to pickup the code. Thus we upload the production bundles on this server. When we create a production build only the packages from dependencies are inlcuded. Packages from devDependencies are not needed as we are not doing development and testing with these bundles but these are production ready bundles for our actual website.
+
+ng build
+Both dependencies and devDependencies are inlcuded in the bundles.
+The bundles are created in dist/project-name which we can deploy to a development server. This development server is used for our development only website, which is only used by developers or testers to develop and test the deployed code 
+
+ng serve
+Both dependencies and devDependencies are inlcuded in the bundles and these bundles are created in a temporary memory in computer. when we visit localhost:4200 then these bundles are downloaded from the temporary memory into the browser. And thus our application runs locally in browser.

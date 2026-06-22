@@ -1,0 +1,46 @@
+<p>add-category works!</p>
+
+<form [formGroup]="addCategoryForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for="categoryName">Category Name</label>
+        <input id="categoryName" formControlName="categoryName" type="text" class="form-control" placeholder="Enter category name">
+        <div *ngIf="addCategoryForm.get('categoryName')?.invalid && addCategoryForm.get('categoryName')?.touched" class="error">
+            Category name is required.
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="categoryDescription">Category Description</label>
+        <textarea id="categoryDescription" formControlName="categoryDescription" class="form-control" placeholder="Enter category description"></textarea>
+        <div *ngIf="addCategoryForm.get('categoryDescription')?.invalid && addCategoryForm.get('categoryDescription')?.touched" class="error">
+            Category description is required.
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="categoryImage">Category Image URL</label>
+        <input id="categoryImage" formControlName="categoryImage" type="text" class="form-control" placeholder="Enter category image URL">
+        <div *ngIf="addCategoryForm.get('categoryImage')?.invalid && addCategoryForm.get('categoryImage')?.touched" class="error">
+            Category image URL is required.
+        </div>
+    </div>
+
+    <button type="submit" class="submit-button" [disabled]="addCategoryForm.invalid">Add Category</button>
+</form>
+
+<div class="categories-list">
+    <h3>Existing Categories</h3>
+    <ul>
+        <li *ngFor="let category of categories">
+            
+            <div>
+                <strong>{{ category.categoryName }}</strong>: {{ category.description }}
+            </div>
+            <div>
+                <img style="width: 500px; height: 300px;" [src]="category.imageUrl" alt="{{ category.categoryName }}" class="category-image">
+            </div>
+            
+        </li>
+    </ul>
+
+</div>

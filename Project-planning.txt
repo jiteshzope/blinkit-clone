@@ -1,0 +1,49 @@
+High level design(HLD):
+
+Components our app will have for customer flow: lOGIN , REGISTER, WELCOME, CATEGORIES, HEADER, PRODUCT LIST, PRODUCT DETAIL, CART, CHECKOUT, ORDER SUCCESS PAGE, MY ORDERS, MY ACCOUNT, SEARCH BAR, ETC
+
+Pages our app will have for admin flow : Add category page, Add product page, HEADER
+
+When User visits the website and he sees a welcome screen for 1 sec... Welcome to Binkit(you wish it, we deliver it)
+`
+By default he will land it on the Categories page, the header will show options to login, register, a input search bar, cart icon, Admin login
+When user clicks login, he is routed to login screen
+when user clicks register, he is routed to registration screen.
+
+when user clicks on the search bar, a dropdown will popup below which will initially show all categories. if user clicks on a category then he is routed to the product list page which will show all the products for that category.
+when user starts typing in the search bar, then we will show the products that matches the search term in the dropdown, when user selects a product from the dropdown, then he is routed to the product list page and the product list page will show all the related products
+
+When user adds a product to cart, the add to cart button will no longer be visible. Quantity + and - buttons will appear. User can add to cart from product list, product detail. And after adding a product to cart, the + and - button will be shown on productlist, productdetail and on cart page.
+
+Cart page will show all the items add to the cart, the header cart icon will be displayed with the count of items in the cart if user is logged in.
+
+Checkout page will show the summary of the items added in cart along with the total price breakup. An address field will be shown to in which user will have to enter address for delivery. Two radio buttons will be shown to select the mode of payment as cash on delivery or UPI and user can select any one. A place order button will be shown on clicking which it will naviagte the user to order success page.
+
+
+**************************************
+
+ADMIN APIS :
+API server --> http//:localhost:3000
+
+1. to create a category
+API Endpoint --> /add-category 
+Method --> POST
+body --> {categoryName: 'vegetables', categoryId: '423244' imageUrl: 'https://something.com/vegetables.png', description: ''}
+
+2. to create a product item
+/add-product
+POST
+{productName : 'spinach', productId: '573342', categoryId: '423244', imageURL: 'spinach.png', price: 20, description: 'This is healthy and fresh from farm', category}
+
+3. to fetch all cateogries
+/getCategories
+GET
+
+4. to fetch all products for a category
+/getProducts?categoryId=423244
+GET
+
+5. for Admin Login
+/admin-login
+POST
+{email: 'jitesh@dsi.com', password: 'sdsds'}
