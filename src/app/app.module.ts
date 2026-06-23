@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { RouterModule, Routes } from '@angular/router';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 const appRoutes: Routes = [
   { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) }
@@ -18,7 +19,8 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    ModalModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -25,8 +25,30 @@ export class DataService {
         });
     }
 
+    editCategory(categoryId: string, categoryName: string, categoryDescription: string, categoryImage: string) {
+        return this.http.put(`${this.apiUrl}edit-category/${categoryId}`, {
+            categoryName,
+            categoryDescription,
+            categoryImage
+        });
+    }
+
     getCategories() {
         return this.http.get(`${this.apiUrl}categories`);
+    }
+
+    addProduct(categoryId: string, productName: string, productDescription: string, productImage: string, productPrice: number) {
+        return this.http.post(`${this.apiUrl}add-product`, {
+            categoryId,
+            productName,
+            productDescription,
+            productImage,
+            productPrice
+        });
+    }
+
+    getProductsByCategory(categoryId: string) {
+        return this.http.get(`${this.apiUrl}products/${categoryId}`);
     }
 
 }

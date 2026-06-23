@@ -1,1 +1,60 @@
-<p>add-product works!</p>
+<div class="add-product-container">
+    <div class="add-product-form-container">
+        <form [formGroup]="addProductForm" (ngSubmit)="handleAddProduct()">
+            <div class="form-group">
+                <label for="productName">Product Name</label>
+                <input id="productName" formControlName="productName" type="text" class="form-control" placeholder="Enter product name">
+                <div *ngIf="addProductForm.get('productName')?.invalid && addProductForm.get('productName')?.touched" class="error">
+                    Product name is required.
+                </div>
+            </div>
+        
+            <div class="form-group">
+                <label for="productDescription">Product Description</label>
+                <textarea id="productDescription" formControlName="productDescription" class="form-control" placeholder="Enter product description"></textarea>
+                <div *ngIf="addProductForm.get('productDescription')?.invalid && addProductForm.get('productDescription')?.touched" class="error">
+                    Product description is required.
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="productImage">Product Image URL</label>
+                <input id="productImage" formControlName="productImage" type="text" class="form-control" placeholder="Enter product image URL">
+                <div *ngIf="addProductForm.get('productImage')?.invalid && addProductForm.get('productImage')?.touched" class="error">
+                    Product image URL is required.
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="productPrice">Product Price</label>
+                <input id="productPrice" formControlName="productPrice" type="number" class="form-control" placeholder="Enter product price">
+                <div *ngIf="addProductForm.get('productPrice')?.invalid && addProductForm.get('productPrice')?.touched" class="error">
+                    Product price is required and must be a valid number.
+                </div>
+            </div>
+
+            <button type="submit" class="submit-button" [disabled]="addProductForm.invalid">Add Product</button>
+        </form>
+    </div>
+
+    <div class="product-list-container">
+        <h2>Products for Category: {{ categoryName }}</h2>
+        <!-- Display the list of products for the selected category here -->
+        <div *ngIf="allProducts.length > 0; else noProducts">
+            <ul>
+                <li *ngFor="let product of allProducts">
+                    <img [src]="product.imageUrl" alt="{{ product.productName }}">
+                    <div class="product-info">
+                        <h3>{{ product.productName }}</h3>
+                        <p>{{ product.description }}</p>
+                        <p>Price: {{ product.price | currency: 'INR' }}</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <ng-template #noProducts>
+            <p>No products available for this category.</p>
+        </ng-template>
+    </div>
+
+</div>
