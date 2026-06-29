@@ -3,7 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { AdminService } from 'src/app/shared/services/admin.service';
-import { DataService } from 'src/app/shared/services/data.service';
+import { DataService } from 'src/app/shared/services/admin-data.service';
 
 @Component({
   selector: 'app-add-category',

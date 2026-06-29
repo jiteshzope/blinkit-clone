@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdminService } from 'src/app/shared/services/admin.service';
-import { DataService } from 'src/app/shared/services/data.service';
+import { DataService } from 'src/app/shared/services/admin-data.service';
 
 @Component({
   selector: 'app-add-product',

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../../services/admin.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +15,7 @@ export class HeaderComponent implements OnInit {
   showAdminLogin : boolean = false;
   showAdminLogout : boolean = false;
 
-  constructor(private adminService: AdminService) { }
+  constructor(private adminService: AdminService, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -31,6 +32,5 @@ export class HeaderComponent implements OnInit {
   handleAdminLogout(): void {
     this.adminService.handleAdminLogout();
   }
-  
 
 }
