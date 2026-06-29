@@ -1,4 +1,5 @@
 <div class="add-product-container">
+    <button class="go-back-button" (click)="goBackToCategories()">Go back</button>
     <div class="add-product-form-container">
         <form [formGroup]="addProductForm" (ngSubmit)="handleAddProduct()">
             <div class="form-group">

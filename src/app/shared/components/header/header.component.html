@@ -6,9 +6,10 @@
         </div>
     </div>
     <div class="header-right-section">
-        <div class="nav-item admin-login" routerLink="/admin/login">Admin Login</div>
-        <div class="nav-item login">Login</div>
-        <div class="nav-item register">Register</div>
-        <div class="nav-item cart">Cart</div>
+        <div *ngIf="showAdminLogin" class="nav-item admin-login" routerLinkActive="highlight" routerLink="/admin/login">Admin Login</div>
+        <div *ngIf="showAdminLogout" class="nav-item admin-logout" (click)="handleAdminLogout()">Admin Logout</div>
+        <div *ngIf="showUserLogin" class="nav-item login">Login</div>
+        <div *ngIf="showUserRegister" class="nav-item register">Register</div>
+        <div *ngIf="showCartIcon" class="nav-item cart">Cart</div>
     </div>
 </div>

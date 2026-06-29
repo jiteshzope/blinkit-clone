@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AdminService } from '../../services/admin.service';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +8,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  showCartIcon: boolean = false;
+  showUserLogin : boolean = true;
+  showUserRegister : boolean = true;
+  showAdminLogin : boolean = false;
+  showAdminLogout : boolean = false;
+
+  constructor(private adminService: AdminService) { }
 
   ngOnInit(): void {
+
+    this.adminService.adminLoginBehaviorSubject.subscribe((isAdminLoggedIn) => {
+      console.log('Admin login status:', isAdminLoggedIn);
+      this.showAdminLogin = !isAdminLoggedIn; // Show admin login when admin is not logged in
+
+      this.showUserLogin = !isAdminLoggedIn; // Hide user login when admin is logged in
+      this.showUserRegister = !isAdminLoggedIn; // Hide user register when admin is logged in
+      this.showAdminLogout = isAdminLoggedIn; // Show admin logout when admin is logged in
+    });
   }
+
+  handleAdminLogout(): void {
+    this.adminService.handleAdminLogout();
+  }
+  
 
 }

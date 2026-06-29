@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AdminService } from 'src/app/shared/services/admin.service';
 import { DataService } from 'src/app/shared/services/data.service';
 
@@ -23,7 +23,7 @@ export class AddProductComponent implements OnInit {
     productPrice: ['', [Validators.required, Validators.pattern("^[0-9]*$")]]
   });
 
-  constructor(private route: ActivatedRoute, private fb: FormBuilder, private dataService: DataService, private adminService: AdminService) { }
+  constructor(private route: ActivatedRoute, private fb: FormBuilder, private dataService: DataService, private adminService: AdminService, private router: Router) { }
 
   ngOnInit(): void {
     this.categoryName = this.adminService.selectedCategory?.categoryName || null;
@@ -63,6 +63,11 @@ export class AddProductComponent implements OnInit {
           }
         });
     }
+  }
+
+  goBackToCategories(): void {
+    // Navigate back to the categories page
+    this.router.navigate(['/admin/add-category']);
   }
 
 }
