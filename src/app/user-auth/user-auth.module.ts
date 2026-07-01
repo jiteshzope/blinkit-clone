@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { UserLoginComponent } from './components/user-login/user-login.component';
 import { UserRegisterComponent } from './components/user-register/user-register.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const userAuthRoutes: Routes = [
   // Define your user authentication routes here
@@ -17,7 +18,8 @@ const userAuthRoutes: Routes = [
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(userAuthRoutes)
+    RouterModule.forChild(userAuthRoutes),
+    ReactiveFormsModule
   ]
 })
 export class UserAuthModule { }

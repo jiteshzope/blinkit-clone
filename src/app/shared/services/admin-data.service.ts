@@ -46,6 +46,14 @@ export class DataService {
             productPrice
         });
     }
+     editProduct(productId: string, productName:string,productDescription:string, productImage:string,  productPrice:number) {
+          return this.http.put(`${this.apiUrl}edit-product/${productId}`, {
+            productName,
+            productDescription,
+            productImage,
+            productPrice
+          });
+      }
 
     getProductsByCategory(categoryId: string) {
         return this.http.get(`${this.apiUrl}products/${categoryId}`);

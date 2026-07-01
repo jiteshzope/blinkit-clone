@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UserAuthService } from 'src/app/shared/services/user-auth.service';
 
 @Component({
   selector: 'app-user-register',
@@ -7,9 +10,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserRegisterComponent implements OnInit {
 
-  constructor() { }
+  userRegisterForm= this.fb.group({
+  userName: ['',[Validators.required]],
+  email: ['',[Validators.required]],
+  password: ['',[Validators.required]],
+  mobileNo: ['',[Validators.required]],
+  address: ['',[Validators.required]]
+})
+
+  constructor( private fb:FormBuilder, private userAuthService:UserAuthService, private router:Router) { }
 
   ngOnInit(): void {
   }
+onRegistrationSubmit():void{
+  console.log("submit clicked")
+  if(this.userRegisterForm.valid){
+    const {userName,email, password,mobileNo,address}= this.userRegisterForm.value
+this.userAuthService.addUserRegistrationDetails(userName,email, password,mobileNo,address).subscribe({
+  next: (response: any)=>{
+     console.log('user register successful:',response);
+     this.router.navigate(['/user/login'])
+   },
+  error:(error)=>{
+    console.log('user register failed',error)
+  } 
+})
+}}
 
 }

@@ -9,7 +9,7 @@ export class UserAuthService {
 
     constructor(private http: HttpClient) {}
 
-    registerUser(userName: string, email: string, password: string, mobile: string, address: string) {
+    addUserRegistrationDetails(userName: string, email: string, password: string, mobile: string, address: string) {
         return this.http.post(`${this.apiUrl}auth/user/register`, {
             userName,
             email,
@@ -18,4 +18,10 @@ export class UserAuthService {
             address
         });
     }
+    getUserLoginDetails(userName:string,password:string){
+    return this.http.post(`${this.apiUrl}auth/user/login`,{
+        userName,
+        password
+    })
+}
 }
