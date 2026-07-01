@@ -11,5 +11,6 @@
         <div *ngIf="showUserLogin" class="nav-item login" routerLinkActive="highlight" routerLink="/user/login">Login</div>
         <div *ngIf="showUserRegister" class="nav-item register" routerLinkActive="highlight" routerLink="/user/register">Register</div>
         <div *ngIf="showCartIcon" class="nav-item cart">Cart</div>
+        <div *ngIf="showUserLogout" class="nav-item logout" (click)="handleUserLogout()">Logout</div>
     </div>
 </div>

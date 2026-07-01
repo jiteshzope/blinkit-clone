@@ -27,6 +27,9 @@ export class AdminLoginComponent implements OnInit {
       this.dataService.adminLogin(username, password).subscribe({
         next: (response) => {
           console.log('Admin login successful:', response);
+          localStorage.removeItem('user'); // Remove any existing user data from local storage
+          localStorage.setItem('adminUser', JSON.stringify(response)); // Store the admin user data in local storage
+          this.adminService.adminUserData = response; // Store the admin user data in the service
           this.adminService.adminLoginBehaviorSubject.next(true); // Set the admin login status to true
           this.router.navigate(['/admin/add-category']);
         },

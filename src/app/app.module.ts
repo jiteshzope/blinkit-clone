@@ -10,6 +10,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 const appRoutes: Routes = [
   { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
   { path: 'user',  loadChildren: () => import('./user-auth/user-auth.module').then(m => m.UserAuthModule) },
+  { path: 'catalog', loadChildren: () => import('./catalog/catalog.module').then(m => m.CatalogModule) },
 ];
 
 @NgModule({

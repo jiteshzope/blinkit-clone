@@ -77,16 +77,16 @@ modalRef?:BsModalRef
   }
 
   handleProductEdit(product:any,template:TemplateRef<any> ):void{
-  console.log("editing product",product);
-  this.editProductId=product._id //to store product id here
-  console.log("productID",product)
-  this.editProductForm.patchValue({
-    productName: product.productName,
-    productDescription: product.description,
-    productImage: product.imageURL,
-    productPrice: product.price
-  });
-  this.modalRef = this.modalService.show(template, {
+    console.log("editing product",product);
+    this.editProductId=product._id //to store product id here
+    console.log("productID",product)
+    this.editProductForm.patchValue({
+      productName: product.productName,
+      productDescription: product.description,
+      productImage: product.imageUrl,
+      productPrice: product.price
+    });
+    this.modalRef = this.modalService.show(template, {
       class: 'modal-lg modal-dialog-centered',
       backdrop: 'static',
       keyboard: false
@@ -94,7 +94,7 @@ modalRef?:BsModalRef
 }
 
 
-ProductEditSubmit():void{
+productEditSubmit(): void{
   console.log("edit form submitted");
   if(this.editProductForm.valid){
     const {productName,productDescription,productImage,productPrice}=this.editProductForm.value;

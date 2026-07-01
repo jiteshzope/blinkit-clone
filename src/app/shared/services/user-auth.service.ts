@@ -18,10 +18,11 @@ export class UserAuthService {
             address
         });
     }
+
     getUserLoginDetails(userName:string,password:string){
-    return this.http.post(`${this.apiUrl}auth/user/login`,{
-        userName,
-        password
-    })
-}
+        return this.http.post(`${this.apiUrl}auth/user/login`,{
+            userName,
+            password
+        })
+    }
 }

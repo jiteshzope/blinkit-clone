@@ -1,0 +1,12 @@
+<h2>Categories</h2>
+
+<div class="categories-container">
+  <div class="category-card" *ngFor="let category of categories" (click)="navigateToProducts(category)">
+    <img [src]="category.imageUrl" alt="{{ category.categoryName }}">
+    <div class="category-info">
+      <h3>{{ category.categoryName }}</h3>
+      <div class="category-description">{{ category.description }}</div>
+    </div>
+  </div>
+
+</div>

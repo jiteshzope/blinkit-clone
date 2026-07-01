@@ -15,11 +15,15 @@ export class AdminService {
     // BehaviorSubject is a type of Subject that is capable of storing the last emitted value, initially it stores the initial value. Then when we call the next() method on it, it will store that new value. This value can be accessed using behaviorSubject.value property
     adminLoginBehaviorSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
+    adminUserData: any;
+
     constructor(private router: Router) { }
 
     handleAdminLogout(): void {
+      this.adminUserData = null;
+      localStorage.removeItem('adminUser');
       this.adminLoginBehaviorSubject.next(false);
-      this.router.navigate(['/']);
+      this.router.navigate(['/catalog', 'categories']);
     }
 
 }

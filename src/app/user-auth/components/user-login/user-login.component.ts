@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserAuthService } from 'src/app/shared/services/user-auth.service';
+import { UserHelperService } from 'src/app/shared/services/user-helper.service';
 
 
 
@@ -18,7 +19,12 @@ export class UserLoginComponent implements OnInit {
   })
 
 
-  constructor(private fb:FormBuilder, private userAuthService:UserAuthService, private router:Router) { }
+  constructor(
+    private fb:FormBuilder, 
+    private userAuthService:UserAuthService, 
+    private router:Router,
+    private userHelperService: UserHelperService) 
+    { }
 
   ngOnInit(): void {
   }
@@ -29,9 +35,15 @@ export class UserLoginComponent implements OnInit {
  if(this.userLoginForm.valid){
   const {username,password} = this.userLoginForm.value;
   this.userAuthService.getUserLoginDetails(username,password).subscribe({
-    next:(response)=>{
+    next:(response: any)=>{
       console.log("user login successful",response);
-      this.router.navigate(['/display/dashboard']);
+
+      localStorage.setItem('user', JSON.stringify(response.user));
+      localStorage.removeItem('adminUser'); // Remove any existing admin user data from local storage
+      this.userHelperService.userData = response.user;
+      this.userHelperService.userLoginStatusBehaviorSubject.next(true);
+      this.router.navigate(['/catalog', 'categories']);
+      // this.router.navigateByUrl('/catalog/categories');
     },
     error:(error)=>{
       console.log("user login failed",error);
